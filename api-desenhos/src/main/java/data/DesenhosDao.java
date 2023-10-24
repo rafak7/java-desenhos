@@ -7,7 +7,7 @@ import model.Desenhos;
 
 public class DesenhosDao {
 	
-	List<Desenhos>desenhos = new ArrayList<>();
+	List <Desenhos> desenhos = new ArrayList<>();
 		
 	public DesenhosDao() {
 		desenhos.add(
@@ -18,12 +18,18 @@ public class DesenhosDao {
 					"http://"
 					)	
 				);
-	
-		
+	}
+		public List<Desenhos> FindAll(){
+			return desenhos;
 	}
 
-	public List<Desenhos> FindAll(){
-		return desenhos;
-	};
+		public Desenhos findById(Long id) {
+			//SELECT *FROM DESENHOS WHERE ID=?*
+			return desenhos
+							.stream()
+							.filter(desenho -> desenho.id() == id )  
+							.findFirst()
+							.orElse(null);
+		}
 	
 }
